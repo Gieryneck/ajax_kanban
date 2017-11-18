@@ -1,36 +1,39 @@
-var board = {
-	name: 'Tablica Kanban',
-	createColumn: function(column) {
-	  this.element.append(column.element);
-	  initSortable();
-	},
-	element: $('#board .column-container')
-};
+	var board = {
+		name: 'Tablica Kanban',
+		createColumn: function(column) {
+			this.element.append(column.element);
+			initSortable();
+		},
+		element: $('#board .column-container')
+	};
 
-$('.create-column').click(function() {  
 
-	var columnName = prompt('Wpisz nazwę kolumny');
+	function initSortable() {
+		$('.card-list').sortable({
+			connectWith: '.card-list',
+			placeholder: 'card-placeholder'
+		}).disableSelection();
+	}
 
-		$.ajax({
 
-			url: baseUrl + '/column',
-			method: 'POST',
-			data: {
+	$('.create-column').click(function() {  
 
-				name: columnName
-			},
+		var columnName = prompt('Wpisz nazwę kolumny');
 
-			success: function(response) {
+			$.ajax({
 
-				var column = new Column(response.id, columnName);
-				board.createColumn(column);
-			}
-		});
-});
-	
-function initSortable() {
-    $('.card-list').sortable({
-      connectWith: '.card-list',
-      placeholder: 'card-placeholder'
-    }).disableSelection();
-  }
+				url: baseUrl + '/column',
+				method: 'POST',
+				data: {
+
+					name: columnName
+				},
+
+				success: function(response) {
+
+					var column = new Column(response.id, columnName);
+					board.createColumn(column);
+				}
+			});
+	});
+		

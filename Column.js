@@ -29,9 +29,10 @@ function Column(id, name) {
 			var cardName = prompt('Wprowadz nazwe karty');
 			event.preventDefault();
 			//self.createCard(new Card(cardName));
+			var self = this;
 
 			$.ajax({
-
+				
 				url: baseUrl + '/card',
 				method: 'POST',
 				data: {
@@ -41,7 +42,7 @@ function Column(id, name) {
 				},
 				success: function(response){
 
-					var card = new Card(response.id, cardName);
+					var card = new Card(response.id, cardName, self.id);
 					self.createCard(card);
 				}
 			});
