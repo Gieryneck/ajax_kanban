@@ -52,7 +52,7 @@ Card.prototype = {
 	editCard: function() {
 
 		var self = this;
-		var newCardName = prompt('Zmień zawartość karty');
+		var newCardName = prompt('Zmień zawartość karty:');
 
 		$.ajax({
 
