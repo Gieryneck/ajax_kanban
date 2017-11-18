@@ -29,7 +29,6 @@ function Column(id, name) {
 			var cardName = prompt('Wprowadz nazwe karty');
 			event.preventDefault();
 			//self.createCard(new Card(cardName));
-			var self = this;
 
 			$.ajax({
 				
@@ -104,4 +103,6 @@ Column.prototype = {
 			}
 		});
 	}
+
+	
 };
